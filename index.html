@@ -3382,18 +3382,40 @@ Ne détruisez pas votre maison et mettez la de côté
 		<script src="js/reveal.js"></script>
 
 		<script>
+		    var showNotes = false;
+
 			// More info about config & dependencies:
 			// - https://github.com/hakimel/reveal.js#configuration
 			// - https://github.com/hakimel/reveal.js#dependencies
 			Reveal.initialize({
 				width: 1280,
 				height: 720,
+				showNotes: showNotes,
 				dependencies: [
 					{ src: 'plugin/markdown/marked.js' },
 					{ src: 'plugin/markdown/markdown.js' },
 					{ src: 'plugin/notes/notes.js', async: true },
 					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
 				]
+			});
+			
+			Reveal.configure({
+				slideNumber: true,
+				showSlideNumber: 'speaker',
+				keyboard: {
+					78: function() {
+						showNotes = !showNotes;
+						Reveal.configure(
+							{
+								showNotes: showNotes
+							}
+						)} ,
+					72: function() { Reveal.configure(
+						{
+							showNotes: false
+						}
+					)}
+				}
 			});
 		</script>
 	</body>
